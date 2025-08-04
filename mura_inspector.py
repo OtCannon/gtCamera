@@ -5,7 +5,7 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 
-class MuraInspector:
+class ROI_selector:
     """
     一個用於顯示器 Mura 檢測的影像處理類別。
 
@@ -189,7 +189,7 @@ class MuraInspector:
     # 公開方法
     # --------------------------------------------------------------------------------
 
-    def process_image(self, show_steps: bool = False, output_filename: str = "final_result.jpg") -> np.ndarray | None:
+    def process_image(self, show_steps: bool = False, output_filename: str = "./img/final_result.jpg") -> np.ndarray | None:
         """
         執行完整的影像處理流程。
 
@@ -260,12 +260,12 @@ class MuraInspector:
 # 主程式：範例使用方式
 # --------------------------------------------------------------------------------
 if __name__ == "__main__":
-    IMAGE_PATH = "test_image.jpg" # 請替換成你的圖片路徑
+    IMAGE_PATH = "./img/capture_20250805_021931.jpg" # 請替換成你的圖片路徑
 
-    inspector = MuraInspector(image_path=IMAGE_PATH)
+    inspector = ROI_selector(image_path=IMAGE_PATH)
 
     # 執行處理流程，並顯示中間步驟
-    final_result = inspector.process_image(show_steps=True, output_filename="template_calibrated.jpg")
+    final_result = inspector.process_image(show_steps=True, output_filename="./img/image.jpg")
 
     if final_result is not None:
         print("\n處理成功！")

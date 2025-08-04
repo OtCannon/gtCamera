@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import os
-from mura_inspector import MuraInspector # 從 Canvas 的檔案中匯入類別
+from mura_inspector import ROI_selector # 從 Canvas 的檔案中匯入類別
 
 class FeatureMatcher:
     """
@@ -130,14 +130,14 @@ class FeatureMatcher:
 if __name__ == "__main__":
     # --- 步驟 1: 使用 MuraInspector 產生模板影像 ---
     
-    TEMPLATE_SOURCE_PATH = "template_calibrated.jpg" # 替換成你的標準品影像路徑
+    TEMPLATE_SOURCE_PATH = "./img/image.jpg" # 替換成你的標準品影像路徑
     
     if not os.path.exists(TEMPLATE_SOURCE_PATH):
         print(f"錯誤：找不到模板來源影像 '{TEMPLATE_SOURCE_PATH}'")
     else:
         print("--- 步驟 1: 正在從來源影像中提取模板 ---")
         # 建立 MuraInspector 物件
-        inspector = MuraInspector(image_path=TEMPLATE_SOURCE_PATH)
+        inspector = ROI_selector(image_path=TEMPLATE_SOURCE_PATH)
         # 執行處理流程，但不顯示中間步驟以加速
         template = inspector.process_image(show_steps=False)
 
@@ -147,7 +147,7 @@ if __name__ == "__main__":
             cv2.waitKey(1) # 短暫顯示一下
 
             # --- 步驟 2: 使用 FeatureMatcher 在新影像中尋找模板 ---
-            TARGET_IMAGE_PATH = "test_image.jpg" # 替換成你的待測影像路徑
+            TARGET_IMAGE_PATH = "./img/capture_20250804_095640.jpg" # 替換成你的待測影像路徑
             
             if not os.path.exists(TARGET_IMAGE_PATH):
                  print(f"錯誤：找不到目標影像 '{TARGET_IMAGE_PATH}'")
